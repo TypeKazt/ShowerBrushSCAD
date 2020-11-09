@@ -32,6 +32,10 @@ handRadius = 20;
 handXPos = 50;
 handYPos = 50;
 
+adapterHeight = brushHeight / 2.0;
+adapterBaseRad = 2;
+adapterTopRad = 0.5;
+
 function notInHandArea(x, y, centerX, centerY, radius) =  sqrt(pow(abs(x - centerX), 2) + pow(abs(y - centerY), 2)) - radius < 0 ? false : true; 
     
 
@@ -74,12 +78,17 @@ translate([-100, -100, brushHeight/2.0])
 
 union()
 {
-    color("BlueViolet", 1.0)
-    cube(size=[brushLength, brushWidth, brushHeight/2.0]);
-    color("Yellow", 1.0)
-    BristleArray();
-};
-
+    translate([brushLength/2.0, brushWidth/2.0, brushHeight]){
+        cube(size=[2,2,adapterHeight]);
+     }
+    union()
+    {
+        color("BlueViolet", 1.0)
+        cube(size=[brushLength, brushWidth, brushHeight/2.0]);
+        color("Yellow", 1.0)
+        BristleArray();
+    };
+}
 
 
 
